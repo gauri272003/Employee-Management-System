@@ -1,0 +1,234 @@
+<%- include('layout/header') %>
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <!-- Error Alert -->
+            <% if (typeof error !== 'undefined' && error) { %>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                    <strong>Error!</strong> <%= error %>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            <% } %>
+
+            <!-- Edit Employee Form Card -->
+            <div class="card shadow-sm">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="card-title mb-0">
+                        <i class="bi bi-pencil-fill me-2"></i>
+                        Edit Employee Information
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <form action="/employees/<%= employee._id %>?_method=PUT" method="POST" id="editEmployeeForm" novalidate>
+                        <div class="row g-3">
+                            <!-- Full Name -->
+                            <div class="col-md-6">
+                                <label for="name" class="form-label">
+                                    Full Name <span class="text-danger">*</span>
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           id="name" 
+                                           name="name" 
+                                           value="<%= employee.name %>"
+                                           required
+                                           minlength="3"
+                                           maxlength="100">
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please provide a valid name (3-100 characters)
+                                </div>
+                            </div>
+
+                            <!-- Employee ID (Read-only) -->
+                            <div class="col-md-6">
+                                <label for="employeeId" class="form-label">
+                                    Employee ID
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-badge-tm"></i></span>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           value="<%= employee.employeeId %>"
+                                           readonly
+                                           disabled>
+                                </div>
+                                <small class="text-muted">Employee ID cannot be changed</small>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">
+                                    Email Address <span class="text-danger">*</span>
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                                    <input type="email" 
+                                           class="form-control" 
+                                           id="email" 
+                                           name="email" 
+                                           value="<%= employee.email %>"
+                                           required>
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please provide a valid email address
+                                </div>
+                            </div>
+
+                            <!-- Phone -->
+                            <div class="col-md-6">
+                                <label for="phone" class="form-label">
+                                    Phone Number <span class="text-danger">*</span>
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-telephone"></i></span>
+                                    <input type="tel" 
+                                           class="form-control" 
+                                           id="phone" 
+                                           name="phone" 
+                                           value="<%= employee.phone %>"
+                                           required
+                                           pattern="[0-9]{10}"
+                                           maxlength="10">
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please provide a valid 10-digit phone number
+                                </div>
+                            </div>
+
+                            <!-- Department -->
+                            <div class="col-md-6">
+                                <label for="department" class="form-label">
+                                    Department <span class="text-danger">*</span>
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-building"></i></span>
+                                    <select class="form-select" id="department" name="department" required>
+                                        <option value="">Select Department</option>
+                                        <option value="IT" <%= employee.department === 'IT' ? 'selected' : '' %>>IT</option>
+                                        <option value="HR" <%= employee.department === 'HR' ? 'selected' : '' %>>HR</option>
+                                        <option value="Finance" <%= employee.department === 'Finance' ? 'selected' : '' %>>Finance</option>
+                                        <option value="Marketing" <%= employee.department === 'Marketing' ? 'selected' : '' %>>Marketing</option>
+                                        <option value="Sales" <%= employee.department === 'Sales' ? 'selected' : '' %>>Sales</option>
+                                        <option value="Operations" <%= employee.department === 'Operations' ? 'selected' : '' %>>Operations</option>
+                                    </select>
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please select a department
+                                </div>
+                            </div>
+
+                            <!-- Designation -->
+                            <div class="col-md-6">
+                                <label for="designation" class="form-label">
+                                    Designation <span class="text-danger">*</span>
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-briefcase"></i></span>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           id="designation" 
+                                           name="designation" 
+                                           value="<%= employee.designation %>"
+                                           required
+                                           minlength="2"
+                                           maxlength="100">
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please provide a valid designation (2-100 characters)
+                                </div>
+                            </div>
+
+                            <!-- Joining Date -->
+                            <div class="col-md-6">
+                                <label for="joiningDate" class="form-label">
+                                    Joining Date <span class="text-danger">*</span>
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-calendar-event"></i></span>
+                                    <input type="date" 
+                                           class="form-control" 
+                                           id="joiningDate" 
+                                           name="joiningDate" 
+                                           value="<%= employee.joiningDate %>"
+                                           required
+                                           max="<%= new Date().toISOString().split('T')[0] %>">
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please select a valid joining date (not in future)
+                                </div>
+                            </div>
+
+                            <!-- Salary -->
+                            <div class="col-md-6">
+                                <label for="salary" class="form-label">
+                                    Salary (₹) <span class="text-danger">*</span>
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-currency-rupee"></i></span>
+                                    <input type="number" 
+                                           class="form-control" 
+                                           id="salary" 
+                                           name="salary" 
+                                           value="<%= employee.salary %>"
+                                           required
+                                           min="0"
+                                           max="100000000"
+                                           step="1000">
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please provide a valid salary amount
+                                </div>
+                            </div>
+
+                            <!-- Status -->
+                            <div class="col-md-12">
+                                <label for="status" class="form-label">
+                                    Status <span class="text-danger">*</span>
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-toggle-on"></i></span>
+                                    <select class="form-select" id="status" name="status" required>
+                                        <option value="Active" <%= employee.status === 'Active' ? 'selected' : '' %>>Active</option>
+                                        <option value="Inactive" <%= employee.status === 'Inactive' ? 'selected' : '' %>>Inactive</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Info Alert -->
+                        <div class="alert alert-info mt-3 mb-0">
+                            <i class="bi bi-info-circle-fill me-2"></i>
+                            <strong>Note:</strong> Employee ID cannot be changed once created. All other fields can be updated.
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <div class="d-flex justify-content-between">
+                                    <a href="/employees/<%= employee._id %>" class="btn btn-secondary">
+                                        <i class="bi bi-arrow-left me-2"></i>Cancel
+                                    </a>
+                                    <div class="d-flex gap-2">
+                                        <button type="reset" class="btn btn-outline-secondary">
+                                            <i class="bi bi-arrow-counterclockwise me-2"></i>Reset
+                                        </button>
+                                        <button type="submit" class="btn btn-warning">
+                                            <i class="bi bi-check-circle me-2"></i>Update Employee
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('layout/footer') %>

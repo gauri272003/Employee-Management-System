@@ -1,0 +1,233 @@
+<%- include('layout/header') %>
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+
+            <!-- Error Alert -->
+            <% if (typeof error !== 'undefined' && error) { %>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                    <strong>Error!</strong> <%= error %>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            <% } %>
+
+            <!-- Add Employee Form Card -->
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="card-title mb-0">
+                        <i class="bi bi-person-plus-fill me-2"></i>Employee Information
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <form action="/employees" method="POST" id="addEmployeeForm" novalidate>
+                        <div class="row g-3">
+
+                            <!-- Full Name -->
+                            <div class="col-md-6">
+                                <label for="name" class="form-label">
+                                    Full Name <span class="text-danger">*</span>
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                    <input type="text" class="form-control" id="name" name="name"
+                                           placeholder="Enter full name"
+                                           value="<%= typeof formData !== 'undefined' ? formData.name || '' : '' %>"
+                                           required minlength="3" maxlength="100">
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please provide a valid name (3-100 characters)
+                                </div>
+                            </div>
+
+                            <!-- Employee ID -->
+                            <div class="col-md-6">
+                                <label for="employeeId" class="form-label">
+                                    Employee ID <span class="text-danger">*</span>
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-badge-tm"></i></span>
+                                    <input type="text" class="form-control text-uppercase" id="employeeId"
+                                           name="employeeId" placeholder="e.g., EMP001"
+                                           value="<%= typeof formData !== 'undefined' ? formData.employeeId || '' : '' %>"
+                                           required pattern="[A-Za-z0-9]+">
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please provide a valid employee ID (letters and numbers only)
+                                </div>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">
+                                    Email Address <span class="text-danger">*</span>
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                                    <input type="email" class="form-control" id="email" name="email"
+                                           placeholder="employee@gyanvix.com"
+                                           value="<%= typeof formData !== 'undefined' ? formData.email || '' : '' %>"
+                                           required>
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please provide a valid email address
+                                </div>
+                            </div>
+
+                            <!-- Phone -->
+                            <div class="col-md-6">
+                                <label for="phone" class="form-label">
+                                    Phone Number <span class="text-danger">*</span>
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-telephone"></i></span>
+                                    <input type="tel" class="form-control" id="phone" name="phone"
+                                           placeholder="10-digit number"
+                                           value="<%= typeof formData !== 'undefined' ? formData.phone || '' : '' %>"
+                                           required pattern="[0-9]{10}" maxlength="10">
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please provide a valid 10-digit phone number
+                                </div>
+                            </div>
+
+                            <!-- Department -->
+                            <div class="col-md-6">
+                                <label for="department" class="form-label">
+                                    Department <span class="text-danger">*</span>
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-yellow text-black">
+                                        <i class="bi bi-building"></i>
+                                    </span>
+                                    <select class="form-select bg-yellow text-black" id="department" name="department" required>
+                                        <option value="">Select Department</option>
+                                        <option value="IT" <%= typeof formData !== 'undefined' && formData.department==='IT' ? 'selected' : '' %>>IT</option>
+                                        <option value="HR" <%= typeof formData !== 'undefined' && formData.department==='HR' ? 'selected' : '' %>>HR</option>
+                                        <option value="Finance" <%= typeof formData !== 'undefined' && formData.department==='Finance' ? 'selected' : '' %>>Finance</option>
+                                        <option value="Marketing" <%= typeof formData !== 'undefined' && formData.department==='Marketing' ? 'selected' : '' %>>Marketing</option>
+                                        <option value="Sales" <%= typeof formData !== 'undefined' && formData.department==='Sales' ? 'selected' : '' %>>Sales</option>
+                                        <option value="Operations" <%= typeof formData !== 'undefined' && formData.department==='Operations' ? 'selected' : '' %>>Operations</option>
+                                    </select>
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please select a department
+                                </div>
+                            </div>
+
+                            <!-- Designation -->
+                            <div class="col-md-6">
+                                <label for="designation" class="form-label">
+                                    Designation <span class="text-danger">*</span>
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-briefcase"></i></span>
+                                    <input type="text" class="form-control" id="designation" name="designation"
+                                           placeholder="e.g., Software Engineer"
+                                           value="<%= typeof formData !== 'undefined' ? formData.designation || '' : '' %>"
+                                           required minlength="2" maxlength="100">
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please provide a valid designation (2-100 characters)
+                                </div>
+                            </div>
+
+                            <!-- Joining Date -->
+                            <div class="col-md-6">
+                                <label for="joiningDate" class="form-label">
+                                    Joining Date <span class="text-danger">*</span>
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-calendar-event"></i></span>
+                                    <input type="date" class="form-control" id="joiningDate" name="joiningDate"
+                                           value="<%= typeof formData !== 'undefined' ? formData.joiningDate || '' : '' %>"
+                                           required max="<%= new Date().toISOString().split('T')[0] %>">
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please select a valid joining date (not in future)
+                                </div>
+                            </div>
+
+                            <!-- Salary -->
+                            <div class="col-md-6">
+                                <label for="salary" class="form-label">
+                                    Salary (₹) <span class="text-danger">*</span>
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-currency-rupee"></i></span>
+                                    <input type="number" class="form-control" id="salary" name="salary"
+                                           placeholder="Monthly salary"
+                                           value="<%= typeof formData !== 'undefined' ? formData.salary || '' : '' %>"
+                                           required min="0" max="100000000" step="1000">
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please provide a valid salary amount
+                                </div>
+                            </div>
+
+                            <!-- Status -->
+                            <div class="col-md-12">
+                                <label for="status" class="form-label">
+                                    Status <span class="text-danger">*</span>
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-toggle-on"></i></span>
+                                    <select class="form-select" id="status" name="status" required>
+                                        <option value="Active" <%= typeof formData !== 'undefined' && formData.status==='Active' ? 'selected' : 'selected' %>>Active</option>
+                                        <option value="Inactive" <%= typeof formData !== 'undefined' && formData.status==='Inactive' ? 'selected' : '' %>>Inactive</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <div class="d-flex justify-content-end gap-2">
+                                    <a href="/employees" class="btn btn-yellow">
+                                        <i class="bi bi-x-circle me-2"></i>Cancel
+                                    </a>
+                                    <button type="reset" class="btn btn-yellow">
+                                        <i class="bi bi-arrow-counterclockwise me-2"></i>Reset
+                                    </button>
+                                    <button type="submit" class="btn btn-warning">
+                                        <i class="bi bi-check-circle me-2"></i>Add Employee
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Info Card -->
+            <div class="alert alert-info mt-3">
+                <i class="bi bi-info-circle-fill me-2"></i>
+                <strong>Note:</strong> All fields marked with <span class="text-danger">*</span> are required.
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<%- include('layout/footer') %>
+
+<!-- Add this CSS somewhere in your main stylesheet -->
+<style>
+.bg-yellow { background-color: #ffeb3b !important; }
+.text-black { color: #000 !important; }
+
+.btn-yellow {
+    color: #ffeb3b;
+    border: 2px solid #ffeb3b;
+    background-color: transparent;
+    transition: all 0.2s;
+}
+.btn-yellow:hover {
+    color: #000;
+    background-color: #ffeb3b;
+    border-color: #ffeb3b;
+}
+</style>

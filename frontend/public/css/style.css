@@ -1,0 +1,666 @@
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  background-color: white;
+  color: var(--black);
+  line-height: 1.5;
+}
+
+/* ======================================== NAVIGATION BAR ======================================== */
+.navbar {
+  padding: 1rem 0;
+  background-color: #ffc107
+  border-bottom: 2px solid hsl(37, 91%, 55%);
+}
+
+.navbar-brand {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #ffffff
+}
+
+.navbar-brand:hover {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+
+.navbar-brand img {
+  margin-right: 8px;
+}
+
+.nav-link {
+  font-weight: 400;
+  padding: 0.5rem 1rem !important;
+  margin: 0 0.25rem;
+  color: #ffffff;
+  border-radius: 0;
+  transition: background-color 0.15s;
+ 
+}
+
+.nav-link:hover {
+  background-color:hsl(37, 91%, 64%);
+  color: #ffffff;
+text-decoration: none;
+}
+
+.nav-link.active {
+  background-color: hsl(37, 91%, 55%);
+  color: #ffffff;
+  font-weight: 500;
+}
+
+/* ======================================== PAGE HEADER ======================================== */
+.page-header {
+  background-color: #fff4B1;
+  color: var(--white);
+  padding: 1.5rem 0;
+  margin-bottom: 2rem;
+  border-bottom: 3px solid var(--black);
+}
+
+.page-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color:#212121;
+}
+
+.breadcrumb {
+  background:#fff4B1;
+  padding: 0;
+  margin: 0;
+}
+
+.breadcrumb-item {
+  color: #212121;
+}
+
+.breadcrumb-item a {
+  color: #212121;
+  text-decoration: underline;
+  font-weight: 400;
+}
+
+.breadcrumb-item a:hover {
+  text-decoration: none;
+}
+
+.breadcrumb-item.active {
+  color: var(--white);
+  font-weight: 500;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+  color: var(--white);
+}
+
+/* ======================================== MAIN CONTENT ======================================== */
+.main-content {
+  padding: 0 0 2rem 0;
+  min-height: calc(100vh - 250px);
+}
+
+/* ======================================== CARDS ======================================== */
+.card {
+  border: 2px solid var(--black);
+  border-radius: 0;
+  background: #fffdd0;
+  margin-bottom: 1.5rem;
+}
+
+.card:hover {
+  /* No hover effect - keep it simple */
+}
+
+.card-header {
+  border-bottom: 2px solid var(--black);
+  font-weight: 600;
+  padding: 1rem 1.25rem;
+  background-color: #fffdd0;;
+  color: var(--black);
+}
+
+.card-body {
+  padding: 1.25rem;
+}
+
+/* ======================================== STATISTICS CARDS ======================================== */
+.stat-card {
+  border: 2px solid var(--black);
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.stat-card-primary {
+  background-color: #FFF9C4;
+  color:#424242;
+}
+.stat-card-primary:hover{
+  background-color: #ffe082;
+}
+
+.stat-card-success {
+  background-color:#FFE082;
+  color:#424242;
+  border: 2px solid var(--black);
+}
+.stat-card-success:hover{
+  background-color: #ffca28;
+}
+
+.stat-card-warning {
+  background-color: #FFCa28;
+  color: #424242;
+}
+.stat-card-warning:hover{
+background-color: #FFB300;
+}
+
+
+.stat-card-info {
+  background-color: #ffb300;
+  color: #424242;
+}
+.stat-card-info:hover{
+  background-color: #ffa000;
+}
+
+.stat-card .card-body {
+  padding: 1.5rem;
+}
+
+.stat-icon {
+  font-size: 2.5rem;
+  opacity: 0.3;
+}
+
+/* ======================================== FORMS ======================================== */
+.form-label {
+  font-weight: 500;
+  color: var(--black);
+  margin-bottom: 0.5rem;
+}
+
+.form-control,
+.form-select {
+  border: 2px solid var(--black);
+  border-radius: 0;
+  padding: 0.625rem 0.75rem;
+  background-color: var(--white);
+  color: var(--black);
+  font-size: 1rem;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--yellow);
+  outline: none;
+  box-shadow: none;
+}
+
+.form-control.text-uppercase {
+  text-transform: uppercase;
+}
+
+.input-group-text {
+  background-color: rgba(0, 0, 0, 0.05);
+  border: 2px solid var(--black);
+  border-right: none;
+  color: var(--black);
+  border-radius: 0;
+}
+
+.input-group .form-control {
+  border-left: none;
+}
+
+.invalid-feedback {
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  color: var(--black);
+}
+
+/* ======================================== BUTTONS ======================================== */
+.btn {
+  font-weight: 500;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0;
+  border: 2px solid var(--black);
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.btn:hover {
+  /* Simple hover - just invert */
+}
+
+.btn:active {
+  transform: none;
+}
+
+.btn i {
+  vertical-align: middle;
+}
+
+.btn-primary {
+  background-color: var(--yellow);
+  border-color: var(--black);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background-color: var(--black);
+  border-color: var(--black);
+  color: var(--white);
+}
+
+.btn-success {
+  background-color: var(--white);
+  border-color: var(--black);
+  color: var(--black);
+}
+
+.btn-success:hover {
+  background-color: var(--yellow);
+  border-color: var(--black);
+  color: var(--white);
+}
+
+.btn-danger {
+  background-color: var(--black);
+  border-color: var(--black);
+  color: var(--white);
+}
+
+.btn-danger:hover {
+  background-color: var(--yellow);
+  border-color: var(--black);
+  color: var(--white);
+}
+
+.btn-secondary {
+  background-color: var(--white);
+  border-color: var(--black);
+  color: var(--black);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-color: var(--black);
+  color: var(--black);
+}
+
+/* ======================================== TABLES ======================================== */
+.table {
+  margin-bottom: 0;
+  border: 2px solid var(--black);
+}
+
+.table thead th {
+  background-color: var(--yellow);
+  color: var(--white);
+  font-weight: 600;
+  border-bottom: 2px solid var(--black);
+  border-right: 1px solid var(--black);
+  vertical-align: middle;
+  white-space: nowrap;
+  padding: 0.75rem;
+}
+
+.table thead th:last-child {
+  border-right: none;
+}
+
+.table tbody tr {
+  border-bottom: 1px solid var(--black);
+}
+
+.table tbody tr:hover {
+  background-color: rgba(245, 166, 35, 0.1);
+}
+
+.table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.table tbody td {
+  vertical-align: middle;
+  padding: 0.75rem;
+  color: var(--black);
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.table tbody td:last-child {
+  border-right: none;
+}
+
+/* ======================================== BADGES ======================================== */
+.badge {
+  font-weight: 500;
+  padding: 0.35em 0.65em;
+  border-radius: 0;
+  border: 1px solid var(--black);
+}
+
+.badge-primary {
+  background-color: var(--yellow);
+  color: var(--white);
+}
+
+.badge-success {
+  background-color: var(--white);
+  color: var(--black);
+}
+
+.badge-warning {
+  background-color: var(--yellow);
+  color: var(--white);
+}
+
+.badge-danger {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+.badge-info {
+  background-color: var(--yellow);
+  color: var(--white);
+}
+
+.bg-info {
+  background-color: var(--yellow) !important;
+  color: var(--white) !important;
+}
+
+/* ======================================== PROFILE PAGE ======================================== */
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 0;
+  background-color: var(--yellow);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: 600;
+  margin: 0 auto;
+  border: 3px solid var(--black);
+}
+
+.detail-item {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+}
+
+.detail-item label {
+  font-weight: 600;
+  color: var(--black);
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detail-item p {
+  font-size: 1rem;
+  margin-bottom: 0;
+  color: var(--black);
+}
+
+.detail-item a {
+  color: var(--black);
+  text-decoration: underline;
+}
+
+.detail-item a:hover {
+  color: var(--yellow);
+}
+
+/* ======================================== ALERTS ======================================== */
+.alert {
+  border: 2px solid var(--black);
+  border-radius: 0;
+  padding: 1rem 1.25rem;
+  border-left-width: 5px;
+}
+
+.alert i {
+  vertical-align: middle;
+}
+
+.alert-success {
+  background-color: var(--white);
+  color: var(--black);
+  border-left-color: var(--yellow);
+}
+
+.alert-warning {
+  background-color: var(--yellow);
+  color: var(--white);
+}
+
+.alert-danger {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+.alert-info {
+  background-color: rgba(245, 166, 35, 0.1);
+  color: var(--black);
+}
+
+/* ======================================== FOOTER ======================================== */
+.footer {
+  margin-top: auto;
+  padding: 1.5rem 0;
+  background-color: #ffd54f;
+ 
+  border-top: 2px solid var(--black);
+}
+
+/* ======================================== MODAL ======================================== */
+.modal-content {
+  border: 3px solid var(--black);
+  border-radius: 0;
+}
+
+.modal-header {
+  border-bottom: 2px solid var(--black);
+  background-color: var(--yellow);
+  color: var(--white);
+  padding: 1rem 1.5rem;
+}
+
+.modal-header .btn-close {
+  filter: brightness(0) invert(1);
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.modal-footer {
+  border-top: 2px solid var(--black);
+  padding: 1rem 1.5rem;
+}
+
+/* ======================================== PROGRESS BAR ======================================== */
+.progress {
+  border-radius: 0;
+  background-color: var(--white);
+  height: 1.5rem;
+  border: 2px solid var(--black);
+}
+
+.progress-bar {
+  background-color: var(--yellow);
+}
+
+/* ======================================== LIST GROUP ======================================== */
+.list-group-item {
+  border: 1px solid var(--black);
+  border-radius: 0;
+  background-color: var(--white);
+  color: var(--black);
+}
+
+.list-group-item:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.list-group-item.active {
+  background-color: var(--yellow);
+  border-color: var(--black);
+  color: var(--white);
+}
+
+/* ======================================== LINKS ======================================== */
+a {
+  color: var(--black);
+  text-decoration: underline;
+}
+
+a:hover {
+  color: var(--yellow);
+  text-decoration: underline;
+}
+
+/* ======================================== UTILITIES ======================================== */
+.text-primary {
+  color: var(--yellow) !important;
+}
+
+.text-secondary {
+  color: var(--black) !important;
+}
+
+.bg-primary {
+  background-color: var(--yellow) !important;
+  color: var(--white) !important;
+}
+
+.bg-secondary {
+  background-color: var(--black) !important;
+  color: var(--white) !important;
+}
+
+.text-muted {
+  color: rgba(0, 0, 0, 0.6) !important;
+}
+
+.fw-medium {
+  font-weight: 500 !important;
+}
+
+.border-primary {
+  border-color: var(--yellow) !important;
+}
+
+.border-secondary {
+  border-color: var(--black) !important;
+}
+
+/* ======================================== RESPONSIVE DESIGN ======================================== */
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 1.5rem;
+  }
+
+  .stat-card .card-body {
+    padding: 1rem;
+  }
+
+  .stat-icon {
+    font-size: 2rem;
+  }
+
+  .table-responsive {
+    font-size: 0.875rem;
+  }
+
+  .btn-group-sm .btn {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar-brand {
+    font-size: 1.2rem;
+  }
+
+  .page-header {
+    padding: 1.25rem 0;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+}
+
+/* ======================================== PRINT STYLES ======================================== */
+@media print {
+
+  .navbar,
+  .page-header,
+  .footer,
+  .btn,
+  .alert {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+  }
+
+  .card {
+    border: 1px solid black;
+  }
+
+  * {
+    color: black !important;
+    background: white !important;
+  }
+}
+.footer-yellow {
+    background-color: #ffd54f;
+    color: #212121;
+}
+
+.footer-yellow p {
+    color: #fff; /* Make text white */
+}
+
+.btn-info {
+  background-color: transparent;
+  border-color: transparent;
+  color: #212121;
+
+}
+.btn-info:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #212121;
+}
+
+.text-info {
+  color: #212121;
+}
+.bi-eye,
+.bi-eye-fill {
+  color: #212121;
+}
